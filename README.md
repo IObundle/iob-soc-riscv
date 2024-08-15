@@ -9,6 +9,7 @@ IOb-SoC-OpenCryptoLinux is a System-on-Chip (SoC) template comprising an open-so
     - [Nix Environment](https://github.com/iobundle/iob-soc-opencryptolinux#nix-environment)
     - [Ethernet Simulation](https://github.com/iobundle/iob-soc-opencryptolinux#ethernet-simulation)
     - [Ethernet Receiver MAC Address](https://github.com/iobundle/iob-soc-opencryptolinux#ethernet-receiver-mac-address)
+    - [Ethernet RAW frame access](https://github.com/iobundle/iob-soc-opencryptolinux#ethernet-raw-frame-access)
     - [Dependencies](https://github.com/iobundle/iob-soc-opencryptolinux#dependencies)
     - [Operating Systems](https://github.com/iobundle/iob-soc-opencryptolinux#operating-systems)
     - [Clone the Repository](https://github.com/iobundle/iob-soc-opencryptolinux#clone-the-repository)
@@ -112,7 +113,17 @@ Set promiscuity to 1 with the command:
 ```bash
 sudo ip link set [interface] promisc on
 ```
-  
+
+## Ethernet RAW frame access
+The system's Python scripts need RAW frame access for Ethernet communication.
+To achieve this, the Python interpreter must have the CAP_NET_RAW capability.
+
+The 'ETHERNET' submodule already includes a Python wrapper that provides RAW frame access.
+To build the python wrapper, run:
+```bash
+make -C submodules/ETHERNET/scripts/pyRawWrapper
+```
+
 ## Dependencies
 
 If you prefer, you may install all the dependencies manually and run IOb-SoC-OpenCryptoLinux without nix-shell. The following tools should be installed:
